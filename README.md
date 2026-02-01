@@ -75,8 +75,8 @@ Architecture 5 achieves the highest efficiency, followed closely by Architecture
 
 A detailed technical report describing the algorithms, state machines, VHDL implementations, synthesis results, and performance comparisons is included:
 
-- `report.pdf`
-
+- [Project Report](report.pdf).
+  
 ---
 
 ## 👤 Author
