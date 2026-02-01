@@ -1,0 +1,19 @@
+Y:/a4/sqrt_a4.vhdl {1 {vcom -work work -2002 -explicit -stats=none Y:/a4/sqrt_a4.vhdl
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity sqrt
+-- Compiling architecture a4 of sqrt
+
+} {} {}} Y:/a4/sqrt_test_a4.vhdl {1 {vcom -work work -2002 -explicit -stats=none Y:/a4/sqrt_test_a4.vhdl
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity tb_sqrt_a4
+-- Compiling architecture behavior of tb_sqrt_a4
+
+} {} {}}

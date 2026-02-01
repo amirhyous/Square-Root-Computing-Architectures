@@ -1,0 +1,68 @@
+# Compile of add_sub.vhd was successful.
+# Compile of control_unit.vhd was successful.
+# Compile of register_R.vhd was successful.
+# Compile of shift_register_D.vhd was successful.
+# Compile of shift_register_Q.vhd was successful.
+# Compile of sqrt.vhd was successful.
+# Compile of sqrt_test_base.vhdl was successful.
+# 7 compiles, 0 failed with no errors.
+vsim -gui work.tb_sqrt
+# vsim -gui work.tb_sqrt 
+# Start time: 10:11:52 on Dec 21,2025
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_sqrt(behavior)
+# Loading work.sqrt(a5)
+# Loading work.control_unit(behavioral)
+# Loading work.shift_reg_d(behavioral)
+# Loading work.register_r(behavioral)
+# Loading work.shift_reg_q(behavioral)
+# Loading work.add_sub(behavioral)
+# Trace back: Error QStructure::sort: invalid command name ""
+#   <6:C:/mtitcl/vsim/qstructure.tc_:2478: ::QStructure::sort .main_pane.structure 0 ascending
+#   <5:eval:1: ::QStructure::structsort .main_pane.structure 0 ascending
+#   <4:eval:1: ::namespace inscope ::QStructure {structsort .main_pane.structure} 0 ascending
+#   >3:proc:26: ::.main_pane.structure.interior.cs.body.struct sort 0 ascending
+#   >2:proc:10: ::.main_pane.structure.interior.cs.body.struct _initializeSortColumn
+#   <1:eval:1: ::namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.structure.interior.cs.body.struct _initializeSortColumn}
+add wave -position insertpoint  \
+sim:/tb_sqrt/clk_tb \
+sim:/tb_sqrt/reset_tb \
+sim:/tb_sqrt/start_tb \
+sim:/tb_sqrt/A_tb \
+sim:/tb_sqrt/result_tb \
+sim:/tb_sqrt/finish_tb
+run
+# Compile of add_sub.vhd was successful.
+# Compile of control_unit.vhd was successful.
+# Compile of register_R.vhd was successful.
+# Compile of shift_register_D.vhd was successful.
+# Compile of shift_register_Q.vhd was successful.
+# Compile of sqrt.vhd was successful.
+# Compile of sqrt_test_base.vhdl was successful.
+# 7 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.tb_sqrt(behavior)
+# Loading work.sqrt(a5)
+# Loading work.control_unit(behavioral)
+# Loading work.shift_reg_d(behavioral)
+# Loading work.register_r(behavioral)
+# Loading work.shift_reg_q(behavioral)
+# Loading work.add_sub(behavioral)
+run
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+add wave -position insertpoint  \
+sim:/tb_sqrt/uut/CTRL/current_state
+run -all
+restart -f
+run
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+# End time: 11:54:27 on Dec 21,2025, Elapsed time: 1:42:35
+# Errors: 0, Warnings: 1
