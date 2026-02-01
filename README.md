@@ -1,4 +1,4 @@
-# FPGA Square Root Computing Architectures in VHDL
+# Square Root Computing Architectures in VHDL
 
 This repository presents the design, implementation, and evaluation of **five different square root computing architectures** for FPGA platforms using **VHDL**. The architectures explore multiple design paradigms—including iterative, combinational, pipelined, and structural approaches—and are compared in terms of **area, frequency, latency, and efficiency**.
 
@@ -68,26 +68,6 @@ Efficiency = Fmax / Total Logic Elements
 
 Architecture 5 achieves the highest efficiency, followed closely by Architecture 2, making them the most suitable choices for FPGA-based square root computation.
 
----
-
-## 🧪 Verification
-
-All architectures were verified using the same testbench and a variety of input values, including:
-
-- Zero and unity inputs  
-- Random large integers  
-- Maximum 32-bit unsigned values  
-
-Simulation results confirm correctness across all architectures.
-
----
-
-## 🛠 Tools & Technologies
-
-- **Hardware Description Language:** VHDL  
-- **Target Platform:** FPGA  
-- **Design Styles:** Behavioral, Structural, and Pipelined  
-- **Simulation & Synthesis:** Quartus / ModelSim (or equivalent)
 
 ---
 
@@ -102,9 +82,6 @@ A detailed technical report describing the algorithms, state machines, VHDL impl
 ## 👤 Author
 
 **Amirhossein Yousefvand**  
-Electrical Engineering  
-Digital Systems & Hardware Design
 
 
-Efficiency is defined as:
 
