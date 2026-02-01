@@ -1,50 +1,110 @@
-# FPGA Square Root Architectures: VHDL Implementation & Benchmarking
+# FPGA Square Root Computing Architectures in VHDL
 
-[cite_start]This repository contains five distinct VHDL architectures designed to compute the integer square root of a 32-bit unsigned integer[cite: 3, 58]. [cite_start]The project evaluates different hardware design trade-offs, including iterative algorithms, fully combinatorial logic, and pipelined structures[cite: 409].
+This repository presents the design, implementation, and evaluation of **five different square root computing architectures** for FPGA platforms using **VHDL**. The architectures explore multiple design paradigms—including iterative, combinational, pipelined, and structural approaches—and are compared in terms of **area, frequency, latency, and efficiency**.
 
-## 🚀 Overview
-[cite_start]The project was developed at **Télécom Paris** to explore efficient FPGA-based arithmetic[cite: 1, 2, 5]. [cite_start]Each architecture was synthesized for the **Cyclone II (EP2C20F484C7)** and benchmarked using **Quartus II 13.0.1**[cite: 66, 67].
+## 📌 Overview
 
-## 🏗️ Architectures
+Computing square roots efficiently is a common requirement in digital signal processing and hardware accelerators. This project investigates several hardware architectures for computing the **integer square root** of an unsigned input, highlighting the trade-offs between:
 
-### 1. Newton-Raphson Method
-* [cite_start]**Logic**: Iterative calculation based on the formula $x_{n+1} = \frac{1}{2}(x_{n} + \frac{A}{x_{n}})$[cite: 15, 16].
-* [cite_start]**Constraint**: High resource usage due to the division operator[cite: 410].
-* [cite_start]**Latency**: Variable based on the input value $A$[cite: 77, 411].
+- Hardware resource utilization  
+- Maximum operating frequency  
+- Latency and throughput  
+- Deterministic vs. input-dependent execution time  
 
-### 2. Sequential Bit Calculation (Behavioral)
-* [cite_start]**Logic**: Calculates bits sequentially using optimized shift and add/subtract operations[cite: 81, 111].
-* [cite_start]**Efficiency**: Uses only 1% of total logic elements[cite: 412, 419].
-
-### 3. Fully Combinatorial
-* [cite_start]**Logic**: A loop-unrolled architecture that computes the result "instantly" within one long combinational path[cite: 133, 134].
-* [cite_start]**Trade-off**: Low $F_{max}$ (6.19 MHz) due to high propagation delay[cite: 414, 419].
-
-### 4. Pipelined Architecture
-* [cite_start]**Logic**: Converts the combinatorial path into a 32-stage pipeline[cite: 177, 265].
-* [cite_start]**Throughput**: High throughput; capable of accepting one new input per clock cycle[cite: 415].
-
-### 5. Structural Datapath & Controller (Optimal)
-* [cite_start]**Logic**: Explicit separation of control logic (FSM) and datapath (Adder/Subtractor, Shift Registers)[cite: 273, 334].
-* [cite_start]**Result**: Achieved the highest efficiency (0.7619 MHz/LE) and the best area-to-speed ratio[cite: 416, 417].
-
-
-
-## 📊 Performance Comparison
-
-| Architecture | Logic Elements (LE) | Max Frequency ($F_{max}$) | Latency (Cycles) |
-| :--- | :--- | :--- | :--- |
-| **Newton (Arch 1)** | [cite_start]4,920 (26%) [cite: 419] | [cite_start]2.42 MHz [cite: 419] | [cite_start]Variable [cite: 419] |
-| **Sequential (Arch 2)** | [cite_start]255 (1%) [cite: 419] | [cite_start]163.19 MHz [cite: 419] | [cite_start]33 [cite: 419] |
-| **Combinatorial (Arch 3)**| [cite_start]2,675 (14%) [cite: 419] | [cite_start]6.19 MHz [cite: 419] | [cite_start]Instant [cite: 419] |
-| **Pipelined (Arch 4)** | [cite_start]3,352 (18%) [cite: 419] | [cite_start]132.94 MHz [cite: 419] | [cite_start]33 [cite: 419] |
-| **Structural (Arch 5)** | [cite_start]**210 (1%)** [cite: 419] | [cite_start]**160.0 MHz** [cite: 419] | [cite_start]**33** [cite: 419] |
-
-## 🛠️ Tools
-* [cite_start]**HDL**: VHDL [cite: 4]
-* [cite_start]**Synthesis**: Quartus II 64-Bit Version 13.0.1 Build 232 SP 1 [cite: 66]
-* [cite_start]**Target Device**: Altera Cyclone II EP2C20F484C7 [cite: 66]
+All designs are parameterized and synthesizable, making them suitable for FPGA-based implementations.
 
 ---
-[cite_start]**Author**: Amirhossein Yousevand [cite: 6]  
-[cite_start]**Date**: December 2025 [cite: 7]
+
+## 🧠 Implemented Architectures
+
+### Architecture 1 – Newton Method (Iterative)
+- Based on the Newton–Raphson method  
+- Requires division operations  
+- Input-dependent latency  
+- High area cost and low maximum operating frequency  
+
+### Architecture 2 – Shift-Based Iterative Algorithm
+- Computes one result bit per clock cycle  
+- Uses only shift and add/subtract operations  
+- Fixed latency: **33 clock cycles**  
+- Very area-efficient and high-frequency design  
+
+### Architecture 3 – Fully Combinational
+- Instantaneous square root computation  
+- High combinational complexity  
+- Low maximum operating frequency  
+- Suitable when zero latency is required  
+
+### Architecture 4 – Pipelined Architecture
+- Pipelined version of the combinational algorithm  
+- Accepts one new input per clock cycle after pipeline fill  
+- Fixed latency: **33 clock cycles**  
+- Increased area due to register usage  
+
+### Architecture 5 – Structural Datapath + Controller
+- Modular datapath and FSM-based controller  
+- Uses shift registers, adder/subtractor, and control logic  
+- Fixed latency: **33 clock cycles**  
+- Best balance between area, speed, and determinism  
+
+---
+
+## 📊 Results Summary
+
+| Architecture | Logic Elements | Fmax (MHz) | Clock Cycles |
+|-------------|---------------|-----------|--------------|
+| Architecture 1 (Newton) | 4,920 (26%) | 2.42 | Variable |
+| Architecture 2 | 255 (1%) | 163.19 | 33 |
+| Architecture 3 | 2,675 (14%) | 6.19* | Instant |
+| Architecture 4 | 3,352 (18%) | 132.94 | 33 |
+| Architecture 5 | 210 (1%) | 160.00 | 33 |
+
+\* Maximum frequency for Architecture 3 was obtained by placing the combinational logic between two registers.
+
+---
+
+## 📈 Efficiency Comparison
+Efficiency = Fmax / Total Logic Elements
+
+Architecture 5 achieves the highest efficiency, followed closely by Architecture 2, making them the most suitable choices for FPGA-based square root computation.
+
+---
+
+## 🧪 Verification
+
+All architectures were verified using the same testbench and a variety of input values, including:
+
+- Zero and unity inputs  
+- Random large integers  
+- Maximum 32-bit unsigned values  
+
+Simulation results confirm correctness across all architectures.
+
+---
+
+## 🛠 Tools & Technologies
+
+- **Hardware Description Language:** VHDL  
+- **Target Platform:** FPGA  
+- **Design Styles:** Behavioral, Structural, and Pipelined  
+- **Simulation & Synthesis:** Quartus / ModelSim (or equivalent)
+
+---
+
+## 📄 Documentation
+
+A detailed technical report describing the algorithms, state machines, VHDL implementations, synthesis results, and performance comparisons is included:
+
+- `report.pdf`
+
+---
+
+## 👤 Author
+
+**Amirhossein Yousefvand**  
+Electrical Engineering  
+Digital Systems & Hardware Design
+
+
+Efficiency is defined as:
+
